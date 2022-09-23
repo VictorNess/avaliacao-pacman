@@ -9,10 +9,6 @@ public class Booster extends Item {
 
     }
 
-    public Booster(int x, int y) {
-        super(x, y);
-    }
-
     public Booster(int x, int y, int duracao) {
         super(x, y);
         this.duracao = duracao;

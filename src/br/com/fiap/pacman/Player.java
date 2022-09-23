@@ -2,9 +2,7 @@ package br.com.fiap.pacman;
 
 public class Player extends GameObject {
 
-    // TODO transformar o tipo de direction para enum
     // TODO construtor e os métodos sets devem ser validados
-    // TODO criar métodos para validação do movimento e movimentar o Player
     private int direction;
     private int life;
     private boolean invencivel;
@@ -16,6 +14,7 @@ public class Player extends GameObject {
     public Player(int x, int y, int direction) {
         super(x, y);
         this.direction = direction;
+        invencivel = false;
     }
 
     public int getDirection() {
@@ -42,7 +41,7 @@ public class Player extends GameObject {
         this.invencivel = invencivel;
     }
 
-    public boolean movimentar(int x, int y, int direction) {
+    private boolean movimentar(int x, int y, int direction) {
         boolean validacao = false;
         switch (direction) {
             case 0:
@@ -58,10 +57,32 @@ public class Player extends GameObject {
                 validacao = getX() + x <= getScreenSize();
                 break;
 
-    
         }
 
         return validacao;
+    }
+
+    public void mover() {
+        int x = getDirection() == 90 || getDirection() == 270 ? 10 : 0;
+        int y = getDirection() == 180 || getDirection() == 0 ? 10 : 0;
+        if (movimentar(x, y, getDirection())) {
+            switch (getDirection()) {
+                case 0:
+                    setY(getY() - y);
+                    break;
+                case 180:
+                    setY(getY() + y);
+                    break;
+                case 270:
+                    setX(getX() - x);
+                    break;
+                case 90:
+                    setX(getX() + x);
+                    break;
+
+            }
+
+        }
     }
 
 }

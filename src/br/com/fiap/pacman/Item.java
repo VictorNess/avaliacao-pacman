@@ -12,6 +12,7 @@ public class Item extends GameObject {
 
     public Item(int x, int y) {
         super(x, y);
+        visivel = true;
     }
 
     public boolean isVisivel() {
